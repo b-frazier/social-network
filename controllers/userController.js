@@ -20,4 +20,10 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  // post a user
+  postUser(req, res) {
+    User.create(req.body)
+      .then((post) => res.json(post))
+      .catch((err) => res.status(500).json(err));
+  },
 };
