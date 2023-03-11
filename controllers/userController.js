@@ -40,4 +40,25 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  // delete a user
+  deleteUser(req, res) {
+    User.findOneAndRemove({ _id: req.params.userId })
+      .then((user) =>
+        user
+          ? User.findOneAndUpdate(
+              { users: req.params.userId },
+              { $pull: { users: req.params.userId } },
+              { new: true }
+            )
+          : res.status(404).json({ message: 'No user found' })
+      )
+      .then((thought) =>
+        thought
+          ? res.json({ message: 'User has been deleted!' })
+          : res
+              .status(404)
+              .json({ message: 'User deleted and no thoughts found' })
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 };
