@@ -2,6 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+require('dotenv').config();
+
 // initialize express
 const app = express();
 
