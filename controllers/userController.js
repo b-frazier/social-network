@@ -40,6 +40,20 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  // add a friend
+  addFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        user
+          ? res.json(user)
+          : res.status(404).json({ message: 'No user found with that ID' })
+      )
+      .catch((err) => res.status(500).json(err));
+  },
   // delete a user
   deleteUser(req, res) {
     User.findOneAndRemove({ _id: req.params.userId })
