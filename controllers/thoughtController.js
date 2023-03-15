@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Thought = require('../models');
+const User = require('../models');
 
 module.exports = {
   // get all thoughts
@@ -17,5 +18,19 @@ module.exports = {
           : res.status(404).json({ message: 'No thoughts found' })
       )
       .catch((err) => res.json(500).json(err));
+  },
+  // add a thought
+  addThought(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { thoughts: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        user
+          ? res.json(user)
+          : res.status(404).json({ message: 'No user found' })
+      )
+      .catch((err) => res.status(500).json(err));
   },
 };
