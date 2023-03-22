@@ -1,6 +1,5 @@
 const { Thought } = require('../models');
 const { User } = require('../models');
-const { ObjectId } = require('bson');
 
 module.exports = {
   // get all thoughts
@@ -21,7 +20,6 @@ module.exports = {
   },
   // add a thought
   addThought(req, res) {
-    console.log(req.params.userId);
     Thought.create(req.body).then((thoughtData) => {
       return User.findOneAndUpdate(
         { id: req.params.userId },
