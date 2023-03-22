@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
   {
+    id: {
+      type: mongoose.Types.ObjectId,
+      default: new mongoose.Types.ObjectId(),
+    },
     username: {
       type: String,
       required: true,
@@ -30,8 +34,8 @@ const userSchema = new mongoose.Schema(
   {
     toJSON: {
       virtuals: true,
-      id: false,
     },
+    id: false,
   }
 );
 
