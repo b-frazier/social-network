@@ -1,5 +1,6 @@
 const { Thought } = require('../models');
 const { User } = require('../models');
+const { ObjectId } = require('bson');
 
 module.exports = {
   // get all thoughts
@@ -20,17 +21,20 @@ module.exports = {
   },
   // add a thought
   addThought(req, res) {
-    User.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $addToSet: { thoughts: req.body } },
-      { runValidators: true, new: true }
-    )
-      .then((user) =>
-        user
-          ? res.json(user)
-          : res.status(404).json({ message: 'No user found' })
+    console.log(req.params.userId);
+    Thought.create(req.body).then((thoughtData) => {
+      return User.findOneAndUpdate(
+        { id: req.params.userId },
+        { $addToSet: { thoughts: thoughtData.id } },
+        { runValidators: true, new: true }
       )
-      .catch((err) => res.status(500).json(err));
+        .then((user) =>
+          user
+            ? res.json(user)
+            : res.status(404).json({ message: 'No user found' })
+        )
+        .catch((err) => res.status(500).json(err));
+    });
   },
   // update a thought
   updateThought(req, res) {
