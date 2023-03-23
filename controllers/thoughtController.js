@@ -80,7 +80,6 @@ module.exports = {
   },
   // delete reaction
   deleteReaction(req, res) {
-    console.log(req.params);
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $pull: { reactions: req.params.reactionId } },
