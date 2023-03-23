@@ -46,11 +46,14 @@ module.exports = {
   },
   // add a friend
   addFriend(req, res) {
+    console.log(req);
+
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { friends: req.body } },
+      { $addToSet: { friends: req.params.friendsId } },
       { runValidators: true, new: true }
     )
+      .populate('friends')
       .then((user) =>
         user
           ? res.json(user)
