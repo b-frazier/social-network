@@ -10,15 +10,19 @@ module.exports = {
   },
   // get one user
   getOneUser(req, res) {
-    User.findOne({ _id: req.params.userId })
+    console.log(req.params.userId);
+    User.findById({ _id: req.params.userId })
       .select('-__v')
-      .populate('thoughts', 'friends')
+      .populate('thoughts')
+      .populate('friends')
       .then((user) =>
         user
           ? res.json(user)
           : res.status(404).json({ message: 'No user found with that ID' })
       )
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => {
+        res.status(500).json(err);
+      });
   },
   // post a user
   postUser(req, res) {
