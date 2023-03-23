@@ -11,6 +11,7 @@ module.exports = {
   // get thoughts by id
   getOneThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
+      .populate('reactions')
       .then((thought) =>
         thought
           ? res.json(thought)
@@ -69,6 +70,7 @@ module.exports = {
       { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
+      .populate('reactions')
       .then((thought) =>
         thought
           ? res.json(thought)
@@ -80,7 +82,7 @@ module.exports = {
   deleteReaction(req, res) {
     Thought.findOneAndRemove(
       { _id: req.params.thoughtId },
-      { $pull: { reactions: { reactionsId: req.params.reactionsId } } },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
       { runValidators: true, new: true }
     )
       .then((thought) =>
