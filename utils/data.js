@@ -1,5 +1,3 @@
-// users need username, email
-
 const usernames = [
   'ingerclank',
   'distanswaffle',
@@ -48,7 +46,7 @@ const thoughts = [
 const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 const createEmail = () => {
-  `${randomItem(usernames)} ${randomItem(emails)}`;
+  return randomItem(usernames);
 };
 
 const randomThoughts = (int) => {
