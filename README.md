@@ -13,7 +13,9 @@ This is the backend of a social app. Users can add thoughts, reactions and frien
 
 ## Installation
 
-npm i, npm run seed, npm run dev
+`npm i`
+`npm run seed`
+`npm run dev`
 
 ## Screenshots
 
