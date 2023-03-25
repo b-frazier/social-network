@@ -22,6 +22,8 @@ npm i, npm run seed, npm run dev
 <img src="./images/get-thoughts.png" width="700">
 <img src="./images/add-thought.png" width="700">
 
+Demo: https://drive.google.com/file/d/1Jeab--aGfVn4KIf-kxvMSeFLfvnBa7le/view
+
 ## License
 
 MIT ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)<br>
