@@ -45,9 +45,9 @@ const thoughts = [
 
 const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-const createEmail = () => {
-  return randomItem(usernames);
-};
+const createEmail = usernames.map((usernames) => {
+  return `${usernames}${randomItem(emails)}`;
+});
 
 const randomThoughts = (int) => {
   const results = [];
