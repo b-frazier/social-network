@@ -17,6 +17,11 @@ npm i, npm run seed, npm run dev
 
 ## Screenshots
 
+<img src="./images/get-users.png" width="700">
+<img src="./images/add-user.png" width="700">
+<img src="./images/get-thoughts.png" width="700">
+<img src="./images/add-thought.png" width="700">
+
 ## License
 
 MIT ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)<br>
