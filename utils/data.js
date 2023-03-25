@@ -45,18 +45,8 @@ const thoughts = [
 
 const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-const createEmail = usernames.map((usernames) => {
+const finalEmail = usernames.map((usernames) => {
   return `${usernames}${randomItem(emails)}`;
 });
 
-const randomThoughts = (int) => {
-  const results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      thoughtText: randomItem(thoughts),
-    });
-  }
-  return results;
-};
-
-module.exports = { createEmail, randomThoughts };
+module.exports = { usernames, finalEmail, thoughts };
