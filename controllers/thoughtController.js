@@ -24,9 +24,10 @@ module.exports = {
     Thought.create(req.body).then((thoughtData) => {
       return User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $addToSet: { thoughts: thoughtData.id } },
+        { $addToSet: { thoughts: thoughtData._id } },
         { runValidators: true, new: true }
       )
+        .populate('thoughts')
         .then((user) =>
           user
             ? res.json(user)
